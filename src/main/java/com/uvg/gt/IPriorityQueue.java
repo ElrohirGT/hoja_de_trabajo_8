@@ -4,7 +4,7 @@ public interface IPriorityQueue<T> {
     /**
      * @return the item with the most priority.
      */
-    public T get();
+    public T dequeue();
 
     /**
      * Inserts a value into the priority queue with the given priority.
@@ -15,7 +15,7 @@ public interface IPriorityQueue<T> {
     public void insert(T value, int priority);
 
     /**
-     * @return the element that get would return.
+     * @return the element that get would return. Without removing it.
      */
     public T peek();
 }
