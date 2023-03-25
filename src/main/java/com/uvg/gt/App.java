@@ -31,19 +31,19 @@ public class App {
         showTitle(_title, ANSI_BLUE);
 
         // /home/elrohirgt/Documents/Development/Java/hoja_de_trabajo_8/data.txt
-        var file = formLabel("Dirección al archivo", ANSI_CYAN, s -> {
+        var file = formLabel("File path ", ANSI_CYAN, s -> {
             var f = new File(s);
             var exists = f.exists();
             if (!exists) {
-                writeErrorMessage("Por favor escribe una dirección válida!");
+                writeErrorMessage("Please enter a valid file path!");
             }
             return exists;
         }, s -> {
             return new File(s);
         });
-        writeWarningMessage(String.format("Se utilizará: %s", file.getPath()));
+        writeWarningMessage(String.format("We will be using: %s", file.getPath()));
 
-        var answer = formLabel("Usar el JCF? (y/n)", ANSI_CYAN);
+        var answer = formLabel("Use the Java Collection Framework? (y/n)", ANSI_CYAN);
         IPriorityQueue<Process> queue = new VectorHeap<>();
         if (answer.toLowerCase().equals("y")) {
             queue = new JCFPriorityQueue<>();
