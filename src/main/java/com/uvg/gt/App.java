@@ -3,15 +3,10 @@ package com.uvg.gt;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.Clock;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * App
