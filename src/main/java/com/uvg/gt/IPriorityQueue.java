@@ -18,4 +18,11 @@ public interface IPriorityQueue<T> {
      * @return the element that get would return. Without removing it.
      */
     public T peek();
+
+    /**
+     * Checks if queue is empty.
+     * 
+     * @return True = empty | False = not empty.
+     */
+    public boolean isEmpty();
 }

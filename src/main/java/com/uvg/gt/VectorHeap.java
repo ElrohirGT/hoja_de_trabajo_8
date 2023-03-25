@@ -12,6 +12,7 @@ public class VectorHeap<T> implements IPriorityQueue<T> {
     /**
      * Removes the element with most priority in the queue
      * and return it.
+     * 
      * @return Most important element.
      */
     @Override
@@ -22,11 +23,11 @@ public class VectorHeap<T> implements IPriorityQueue<T> {
         T value = data.get(0).getValue();
 
         // Resigning the new root value.
-        data.set(0, data.get(data.size() -1 ));
+        data.set(0, data.get(data.size() - 1));
         data.remove(data.size() - 1);
 
         // Rearranging tree to make sure it still a heap.
-        if(data.size() > 1)
+        if (data.size() > 1)
             pushDownRoot(0);
 
         return value;
@@ -34,6 +35,7 @@ public class VectorHeap<T> implements IPriorityQueue<T> {
 
     /**
      * Adds an element to the queue.
+     * 
      * @param value    the value to insert.
      * @param priority the priority level. Lower means more priority.
      */
@@ -41,12 +43,14 @@ public class VectorHeap<T> implements IPriorityQueue<T> {
     public void insert(T value, int priority) {
         // Inserting new item to queue.
         data.add(new QueueItem<T>(value, priority));
-        // Rearranging the new item in the queue to maker sure it still ordered by priority.
+        // Rearranging the new item in the queue to maker sure it still ordered by
+        // priority.
         traverseUp(data.size() - 1);
     }
 
     /**
      * Returns the element with most priority at the moment.
+     * 
      * @return Most important element.
      */
     @Override
@@ -58,30 +62,34 @@ public class VectorHeap<T> implements IPriorityQueue<T> {
 
     /**
      * Checks if queue is empty.
+     * 
      * @return True = empty | False = not empty.
      */
-    public boolean isEmpty(){
+    @Override
+    public boolean isEmpty() {
         return this.data.size() == 0;
     }
 
     /**
      * Returns queue size.
+     * 
      * @return queue's size.
      */
-    public int size(){
+    public int size() {
         return this.data.size();
     }
 
     /**
      * Moves and element up the tree, until it finds the
      * right spot within the heap.
+     * 
      * @param leaf Index of the element to move.
      */
-    private void traverseUp (int leaf){
+    private void traverseUp(int leaf) {
         int parent = parent(leaf);
         QueueItem<T> value = data.get(leaf);
         while (leaf > 0 &&
-                (value.compareTo(data.get(parent))) < 0){
+                (value.compareTo(data.get(parent))) < 0) {
             data.set(leaf, data.get(parent));
             leaf = parent;
             parent = parent(leaf);
@@ -92,25 +100,26 @@ public class VectorHeap<T> implements IPriorityQueue<T> {
     /**
      * Moves and element down the tree, until it finds the
      * right spot within the heap.
+     * 
      * @param root Index of the element to move.
      */
     private void pushDownRoot(int root) {
         int heapSize = data.size();
         QueueItem<T> value = data.get(root);
-        while (root < heapSize){
+        while (root < heapSize) {
             int childpos = leftChild(root);
-            if (childpos < heapSize){
+            if (childpos < heapSize) {
                 if (rightChild(root) < heapSize &&
                         (data.get(rightChild(root))).compareTo(data.get(childpos)) < 0)
-                    childpos ++;
-                if ((data.get(childpos)).compareTo(value) < 0){
+                    childpos++;
+                if ((data.get(childpos)).compareTo(value) < 0) {
                     data.set(root, data.get(childpos));
                     root = childpos;
                 } else {
                     data.set(root, value);
                     return;
                 }
-            }else {
+            } else {
                 data.set(root, value);
                 return;
             }
@@ -119,29 +128,32 @@ public class VectorHeap<T> implements IPriorityQueue<T> {
 
     /**
      * Finds the parent of a node.
+     * 
      * @param i index of the current node.
      * @return Index of the parent node.
      */
-    private int parent(int i){
-        return (i-1)/2;
+    private int parent(int i) {
+        return (i - 1) / 2;
     }
 
     /**
      * Finds the left child of a node.
+     * 
      * @param i index of the current node.
      * @return Index of it's left child node.
      */
-    private int leftChild(int i){
-        return 2*i + 1;
+    private int leftChild(int i) {
+        return 2 * i + 1;
     }
 
     /**
      * Finds the right child of a node.
+     * 
      * @param i index of the current node.
      * @return Index of it's right child node.
      */
-    private int rightChild(int i){
-        return 2*i + 2;
+    private int rightChild(int i) {
+        return 2 * i + 2;
     }
 
     @Override
