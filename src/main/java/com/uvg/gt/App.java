@@ -30,7 +30,7 @@ public class App {
         clearConsole();
         showTitle(_title, ANSI_BLUE);
 
-        // /home/elrohirgt/Documents/Development/Java/hoja_de_trabajo_6/data.txt
+        // /home/elrohirgt/Documents/Development/Java/hoja_de_trabajo_8/data.txt
         var file = formLabel("Dirección al archivo", ANSI_CYAN, s -> {
             var f = new File(s);
             var exists = f.exists();
